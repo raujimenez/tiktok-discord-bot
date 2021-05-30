@@ -4,7 +4,7 @@ This program will download a tiktok given the mobile version of the website and 
 ## Important environment setup
 - Create a new .env file based off of template.env
 - Insert the Discord API token into the .env file
-- follows the format https://vm.tiktok.com/\w*
+- follows the format ``https://vm.tiktok.com/\w*``
 
 ## Run the application using docker
 ```
