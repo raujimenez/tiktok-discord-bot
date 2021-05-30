@@ -6,7 +6,8 @@ module.exports = class TikTokDownloadService {
 
     async downloadVideo(expandedUrl, shortenedUrl) {
         const id = this.parseUrlForId(expandedUrl);
-        let pathUrl = await this.useCLITiktokScraper(shortenedUrl, id)
+        let pathUrl = await this.useCLITiktokScraper(shortenedUrl, id);
+        console.log(pathUrl);
         return pathUrl;
     }
 
@@ -21,5 +22,5 @@ module.exports = class TikTokDownloadService {
             })
         })
     }
-    
+
 }
