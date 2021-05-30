@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "ffmpeg": "0.0.4",
+    "process": "^0.11.10",
     "tall": "^4.0.1",
     "tiktok-scraper": "^1.4.24"
   }
