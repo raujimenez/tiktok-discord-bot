@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  tiktok:
+    image: raujimenez/tiktok-downloader-discord-bot
+    container_name: TikTokDownloaderBot
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - NODE_VERSION=12.22.1
+      - YARN_VERSION=1.22.5
+      - token=${token}
+    ports:
+      - 10080:80
+      - 18080:8080
+    restart: unless-stopped
