@@ -13,16 +13,18 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const regex = new RegExp('https://vm.tiktok.com/\w*')
+const mobileShortLinkRegex = new RegExp('https://vm.tiktok.com/\w*')
+const userIdWithVideoIdRegex = new RegExp('https://www.tiktok.com/@\w*');
 
 client.on('message', async (msg) => {
-  if (regex.test(msg.content)) {
-    const author = msg.author;
-    const url = msg.content;
 
+  if (mobileShortLinkRegex.test(msg.content) || userIdWithVideoIdRegex.test(msg.content)) {
+    const url = msg.content;
     try {
         const expandedUrl = await urlExpandService.expandUrl(url);
-        const pathUrl = await tiktokDownloadService.downloadVideo(expandedUrl, url);
+        const pathUrl = await tiktokDownloadService.downloadVideo(
+            mobileShortLinkRegex.test(msg.content) ? expandedUrl : url, 
+            mobileShortLinkRegex.test(msg.content) ? url : null);
         
         msg.reply(`Replaced your link of ${url} with a video :D`, {
             files: [{attachment: `${pathUrl}`}]
