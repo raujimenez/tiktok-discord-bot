@@ -28,7 +28,9 @@ client.on('message', async (msg) => {
         
         msg.reply(`Replaced your link of ${url} with a video :D`, {
             files: [{attachment: `${pathUrl}`}]
-        }).then((val) => {
+        }).catch((err) => {
+            console.log(error)
+        }).finally(() => {
             fs.unlink(pathUrl, (err) => {
                 if (err) {
                     console.log(`Error: Failed to delete ${pathUrl}`)
@@ -37,7 +39,7 @@ client.on('message', async (msg) => {
                     console.log(`${pathUrl} was deleted.`)
                 }
             });
-        }).catch((err) => console.log(error));
+        })
 
         msg.delete().catch((rejected) => console.log(rejected))
     } catch(error) {
