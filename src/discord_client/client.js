@@ -36,12 +36,11 @@ client.on('message', async (msg) => {
                     console.log(`Error: Failed to delete ${pathUrl}`)
                 }
                 else {
+                    msg.delete().catch((rejected) => console.log(rejected))
                     console.log(`${pathUrl} was deleted.`)
                 }
             });
         })
-
-        msg.delete().catch((rejected) => console.log(rejected))
     } catch(error) {
         console.log(`failed with ${error}`);
     }
