@@ -17,6 +17,7 @@ module.exports = class TikTokDownloadService {
 
   useCLITiktokScraper(url, id) {
     return new Promise((resolve, reject) => {
+      console.log(`tiktok-scraper video ${url} -d`);
       exec(["tiktok-scraper", "video", url, "-d"].join(" ")).on(
         "close",
         (code, signal) => {
