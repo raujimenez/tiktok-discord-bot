@@ -37,7 +37,7 @@ client.on("message", async (msg) => {
           files: [{ attachment: `${pathUrl}` }],
         })
         .catch((err) => {
-          console.log(error);
+          console.log(err);
         })
         .finally(() => {
           fs.unlink(pathUrl, (err) => {
