@@ -48,6 +48,7 @@ sudo apt-get install python3.6 python3-pip -y
 sudo pip3 install TikTokApi
 sudo pip3 install requests
 sudo pip3 install --upgrade requests
+sudo pip3 install typing
 sudo python3 -m playwright install
 
 
