@@ -5,7 +5,7 @@ sudo apt install nodejs -y
 sudo apt install npm -y
 
 # download python3 and pip3
-sudo apt-get install python3.6 -y
+sudo apt-get install python3.6 python3-pip -y
 
 # install tiktokdownloader service
 pip3 install TikTokApi
