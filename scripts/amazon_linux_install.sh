@@ -1,6 +1,10 @@
 #!/bin/bash
 
+
 # install needed dependencies 
+sudo apt update -y
+sudo apt upgrade -y 
+
 sudo apt-get install libgtk-3-0\
           libcairo2\
           libegl1\
@@ -33,8 +37,9 @@ sudo apt-get install libgtk-3-0\
           gstreamer1.0-libav -y
 
 # download node
-sudo apt install nodejs -y
-sudo apt install npm -y
+curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+sudo sh nodesource_setup.sh
+sudo apt install nodejs
 
 # download python3 and pip3
 sudo apt-get install python3.6 python3-pip -y
