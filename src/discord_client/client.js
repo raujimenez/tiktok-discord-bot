@@ -1,11 +1,9 @@
 const fs = require("fs");
 const Discord = require("discord.js");
-const UrlExpandService = require("../services/UrlExpandService");
 const TikTokDownloadService = require("../services/TikTokDownloadService");
 require("dotenv").config();
 
 const client = new Discord.Client();
-const urlExpandService = new UrlExpandService();
 const tiktokDownloadService = new TikTokDownloadService();
 
 const config = {
@@ -21,17 +19,18 @@ const userIdWithVideoIdRegex = new RegExp("https://www.tiktok.com/@w*");
 
 client.on("message", async (msg) => {
   if (
-    mobileShortLinkRegex.test(msg.content) ||
-    userIdWithVideoIdRegex.test(msg.content)
+    (mobileShortLinkRegex.test(msg.content) || userIdWithVideoIdRegex.test(msg.content)) &&
+    msg.author.username !== client.user.username
   ) {
-    const url = msg.content;
-    try {
-      const expandedUrl = await urlExpandService.expandUrl(url);
-      const pathUrl = await tiktokDownloadService.downloadVideo(
-        mobileShortLinkRegex.test(msg.content) ? expandedUrl : url,
-        mobileShortLinkRegex.test(msg.content) ? url : null
-      );
+    console.log("READING THIS MESSAGE: " + msg.content);
 
+    // post tiktok from any message irregadless of response
+    let url = msg.content.split('https')[1].split(' ')[0];
+    url = 'https' + url;
+
+    try {
+      // const expandedUrl = await urlExpandService.expandUrl(url);
+      const pathUrl = await tiktokDownloadService.downloadVideo(url);
       msg
         .reply(`Replaced your link of ${url} with a video :D`, {
           files: [{ attachment: `${pathUrl}` }],
@@ -50,7 +49,7 @@ client.on("message", async (msg) => {
         })
         .then(() => {
           if (config.deleteMessage) {
-            msg.delete().catch((rejected) => console.log(rejected));
+            msg.delete().catch((rejected) => console.log("BALLS: "+ rejected));
           }
         });
     } catch (error) {
