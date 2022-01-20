@@ -9,6 +9,14 @@ This program will download a tiktok given the mobile version of the website and 
 
 ## Run the application with node
 ```
+# Linux install for python utility
+pip3 install TikTokApi
+python3 -m playwright install
+
+# Windows install for windows utility
+pip install TikTokApi
+python -m playwright install
+
 npm i -g tiktok-scraper
 npm i
 node src/discord_client/client.js
