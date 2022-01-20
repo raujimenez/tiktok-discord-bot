@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # download node
-sudo yum install nodejs npm --enablerepo=epel
+sudo yum install -y gcc-c++ make -y
+curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash - 
+sudo yum install -y nodejs -y 
 
 # download python3 and pip3
 sudo yum install python34 python34-pip -y
