@@ -17,7 +17,6 @@ python3 -m playwright install
 pip install TikTokApi
 python -m playwright install
 
-npm i -g tiktok-scraper
 npm i
 node src/discord_client/client.js
 ```
