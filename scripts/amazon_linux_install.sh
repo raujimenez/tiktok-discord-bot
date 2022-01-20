@@ -42,6 +42,7 @@ sudo apt-get install python3.6 python3-pip -y
 # install tiktokdownloader service
 pip3 install TikTokApi
 pip3 install requests
+pip3 install --upgrade requests
 python3 -m playwright install
 
 # install node dependencies
