@@ -67,7 +67,7 @@ client.on("message", async (msg) => {
   } else if (msg.content == "!tictaco supress embed toggle") {
     config.suppressEmbeds = !config.suppressEmbeds;
     msg.reply(
-      `will now ${config.deleteMessage ? "" : "not "}supress embeds in messages`
+      `will now ${config.suppressEmbeds ? "" : "not "}supress embeds in messages`
     );
   } else if (msg.author.id === BOT_ID) {
     msg.suppressEmbeds(true);
