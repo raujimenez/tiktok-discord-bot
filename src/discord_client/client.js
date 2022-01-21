@@ -8,7 +8,6 @@ const tiktokDownloadService = new TikTokDownloadService();
 
 const config = {
   deleteMessage: false,
-  suppressEmbeds: false,
 };
 
 client.on("ready", () => {
@@ -25,8 +24,6 @@ client.on("message", async (msg) => {
       userIdWithVideoIdRegex.test(msg.content)) &&
     msg.author.username !== client.user.username
   ) {
-    console.log("READING THIS MESSAGE: " + msg.content);
-
     // post tiktok from any message irregadless of response
     let url = msg.content.split("https")[1].split(" ")[0];
     url = "https" + url;
@@ -52,10 +49,7 @@ client.on("message", async (msg) => {
         })
         .then(() => {
           if (config.deleteMessage) {
-            msg.delete().catch((rejected) => console.log("BALLS: " + rejected));
-          }
-          if (config.suppressEmbeds && !config.deleteMessage) {
-            msg.suppressEmbeds(config.suppressEmbeds);
+            msg.delete().catch((rejected) => console.log(rejected));
           }
         });
     } catch (error) {
@@ -64,16 +58,11 @@ client.on("message", async (msg) => {
   } else if (msg.content == "!tictaco delete toggle") {
     config.deleteMessage = !config.deleteMessage;
     msg.reply(`will now ${config.deleteMessage ? "" : "not "}delete message`);
-  } else if (msg.content == "!tictaco supress embed toggle") {
-    config.suppressEmbeds = !config.suppressEmbeds;
-    msg.reply(
-      `will now ${config.suppressEmbeds ? "" : "not "}supress embeds in messages`
-    );
   } else if (msg.author.id === BOT_ID) {
     msg.suppressEmbeds(true);
   } else if (msg.content == "!tictaco help") {
     msg.reply(
-      "\n`!tictaco delete toggle`\nDeletes the original message you sent if enabled\n`!tictaco supress embed toggle`\nWill remove the Embed of your tiktok url to tidy things up"
+      "\n`!tictaco delete toggle`\nDeletes the original message you sent if enabled\n`"
     );
   }
 });
