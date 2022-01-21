@@ -62,7 +62,7 @@ client.on("message", async (msg) => {
     msg.suppressEmbeds(true);
   } else if (msg.content == "!tictaco help") {
     msg.reply(
-      "\n`!tictaco delete toggle`\nDeletes the original message you sent if enabled\n`"
+      `\n\`!tictaco delete toggle\`\nDeletes the original message you sent if enabled. Currently set to deleteMessage=\`${config.deleteMessage}\``
     );
   }
 });
