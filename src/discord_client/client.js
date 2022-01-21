@@ -73,7 +73,7 @@ client.on("message", async (msg) => {
     msg.suppressEmbeds(true);
   } else if (msg.content == "!tictaco help") {
     msg.reply(
-      ">>> `!tictaco delete toggle`\nDeletes the original message you sent if enabled\n`!tictaco supress embed toggle`\nWill remove the Embed of your tiktok url to tidy things up"
+      "\n`!tictaco delete toggle`\nDeletes the original message you sent if enabled\n`!tictaco supress embed toggle`\nWill remove the Embed of your tiktok url to tidy things up"
     );
   }
 });
