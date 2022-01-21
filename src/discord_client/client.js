@@ -16,6 +16,7 @@ client.on("ready", () => {
 
 const mobileShortLinkRegex = new RegExp("https://vm.tiktok.com/w*");
 const userIdWithVideoIdRegex = new RegExp("https://www.tiktok.com/@w*");
+const BOT_ID = "479285814690447361";
 
 client.on("message", async (msg) => {
   if (
@@ -59,6 +60,8 @@ client.on("message", async (msg) => {
   } else if (msg.content == "!tictaco delete toggle") {
     config.deleteMessage = !config.deleteMessage;
     msg.reply(`will now ${config.deleteMessage ? "" : "not"}delete message`);
+  } else if (msg.author.id === BOT_ID) {
+    msg.suppressEmbeds(true);
   }
 });
 
