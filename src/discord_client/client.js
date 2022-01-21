@@ -19,14 +19,15 @@ const userIdWithVideoIdRegex = new RegExp("https://www.tiktok.com/@w*");
 
 client.on("message", async (msg) => {
   if (
-    (mobileShortLinkRegex.test(msg.content) || userIdWithVideoIdRegex.test(msg.content)) &&
+    (mobileShortLinkRegex.test(msg.content) ||
+      userIdWithVideoIdRegex.test(msg.content)) &&
     msg.author.username !== client.user.username
   ) {
     console.log("READING THIS MESSAGE: " + msg.content);
 
     // post tiktok from any message irregadless of response
-    let url = msg.content.split('https')[1].split(' ')[0];
-    url = 'https' + url;
+    let url = msg.content.split("https")[1].split(" ")[0];
+    url = "https" + url;
 
     try {
       // const expandedUrl = await urlExpandService.expandUrl(url);
@@ -49,7 +50,7 @@ client.on("message", async (msg) => {
         })
         .then(() => {
           if (config.deleteMessage) {
-            msg.delete().catch((rejected) => console.log("BALLS: "+ rejected));
+            msg.delete().catch((rejected) => console.log("BALLS: " + rejected));
           }
         });
     } catch (error) {

@@ -2,7 +2,8 @@ version: "3"
 
 services:
   tiktok:
-    image: raujimenez/tiktok-downloader-discord-bot
+    image: tiktok-discord-bot_tiktok
+    build: .
     container_name: TikTokDownloaderBot
     environment:
       - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
