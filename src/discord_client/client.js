@@ -1,4 +1,5 @@
 const fs = require("fs");
+const LOGGER = require("../services/TiktokLogger");
 const Discord = require("discord.js");
 const TikTokDownloadService = require("../services/TikTokDownloadService");
 require("dotenv").config();
@@ -11,7 +12,7 @@ const config = {
 };
 
 client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+  LOGGER.info(`Logged in as ${client.user.tag}!`);
 });
 
 const mobileShortLinkRegex = new RegExp("https://vm.tiktok.com/w*");
@@ -19,6 +20,7 @@ const userIdWithVideoIdRegex = new RegExp("https://www.tiktok.com/@w*");
 const BOT_ID = "479285814690447361";
 
 client.on("message", async (msg) => {
+  LOGGER.info(`${msg.author.tag} (${msg.author.username}): ${msg.content}`);
   if (
     (mobileShortLinkRegex.test(msg.content) ||
       userIdWithVideoIdRegex.test(msg.content)) &&
@@ -36,24 +38,24 @@ client.on("message", async (msg) => {
           files: [{ attachment: `${pathUrl}` }],
         })
         .catch((err) => {
-          console.log(err);
+          LOGGER.error(err);
         })
         .finally(() => {
           fs.unlink(pathUrl, (err) => {
             if (err) {
-              console.log(`Error: Failed to delete ${pathUrl}`);
+              LOGGER.error(`Error: Failed to delete ${pathUrl}`);
             } else {
-              console.log(`${pathUrl} was deleted.`);
+              LOGGER.info(`${pathUrl} was deleted.`);
             }
           });
         })
         .then(() => {
           if (config.deleteMessage) {
-            msg.delete().catch((rejected) => console.log(rejected));
+            msg.delete().catch((rejected) => LOGGER.error(rejected));
           }
         });
     } catch (error) {
-      console.log(`failed with ${error}`);
+      LOGGER.error(`failed with ${error}`);
     }
   } else if (msg.content == "!tictaco delete toggle") {
     config.deleteMessage = !config.deleteMessage;

@@ -11,3 +11,5 @@ services:
       - 10080:80
       - 18080:8080
     restart: unless-stopped
+    volumes:
+      - ./logs:/home/app/log
