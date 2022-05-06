@@ -60,13 +60,16 @@ client.on("message", async (msg) => {
   } else if (msg.content == "!tictaco delete toggle") {
     config.deleteMessage = !config.deleteMessage;
     msg.reply(`will now ${config.deleteMessage ? "" : "not "}delete message`);
-  } else if (msg.author.id === BOT_ID) {
-    msg.suppressEmbeds(true);
   } else if (msg.content == "!tictaco help") {
     msg.reply(
       `\n\`!tictaco delete toggle\`\nDeletes the original message you sent if enabled. Currently set to deleteMessage=\`${config.deleteMessage}\``
     );
   }
+
+  if (msg.author.id == BOT_ID) {
+    msg.suppressEmbeds(true);
+  }
+
 });
 
 client.login(process.env.token);
