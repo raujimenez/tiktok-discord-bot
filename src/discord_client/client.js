@@ -17,7 +17,7 @@ client.on("ready", () => {
 
 const mobileShortLinkRegex = new RegExp("https://vm.tiktok.com/w*");
 const userIdWithVideoIdRegex = new RegExp("https://www.tiktok.com/@w*");
-const BOT_ID = "479285814690447361";
+const BOT_ID = "971624223418253366";
 
 client.on("message", async (msg) => {
   LOGGER.info(`${msg.author.tag} (${msg.author.username}): ${msg.content}`);
